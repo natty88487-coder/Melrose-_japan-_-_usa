@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Melrose Japan & USA | Product Catalog</title>
+<style>
+:root{--ink:#503126;--muted:#806b60;--cream:#fffaf6;--line:#eadfd7;--rose:#f3e2d9;--gold:#a8794d}
+*{box-sizing:border-box}body{margin:0;background:var(--cream);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif}
+header{text-align:center;padding:35px 16px 26px;background:linear-gradient(140deg,#f7e9e4,#fffaf6 60%,#f0dfd4);border-bottom:1px solid var(--line)}
+.kicker{font-size:12px;letter-spacing:.16em;color:var(--muted)}h1{font:clamp(32px,6vw,54px) Georgia,serif;margin:8px 0}.subtitle{margin:0;font-size:17px}
+main{max-width:1160px;margin:auto;padding:24px 16px 45px}.intro{text-align:center;line-height:1.7;color:var(--muted);margin:0 auto 22px}
+.search{display:block;width:min(720px,100%);margin:0 auto 18px;padding:14px 16px;border:1px solid #ddc9bc;border-radius:14px;background:#fff;font:inherit}
+.filters{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-bottom:25px}.filters button,.btn,.more{border:1px solid #d8c0af;border-radius:999px;padding:9px 14px;background:#fff;color:var(--ink);font:inherit;cursor:pointer;text-decoration:none;display:inline-block}.filters button.active,.filters button:hover{background:var(--ink);color:white}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.card{background:white;border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 5px 18px #5b38200b;display:flex;flex-direction:column}
+.card img{width:100%;height:220px;object-fit:contain;background:#f8f0eb;padding:12px}.placeholder{height:220px;display:grid;place-items:center;background:linear-gradient(135deg,#f3e2d9,#fff7f0);font-size:56px}
+.body{padding:15px;display:flex;flex-direction:column;gap:8px;flex:1}.body h2{font-size:18px;margin:0}.desc{font-size:13px;line-height:1.55;color:var(--muted);margin:0}.price{font-weight:700;color:#6a4030}.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto;padding-top:8px}.more{font-size:13px}.ask{background:var(--ink);color:white;border-color:var(--ink)}
+.admin{margin-top:32px;padding:22px;border:1px dashed #c7a78e;border-radius:18px;background:#fffdfb}.admin h2{margin:0 0 8px}.admin p{color:var(--muted);font-size:13px;line-height:1.6}.formgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.formgrid input,.formgrid select,.formgrid textarea{width:100%;padding:11px;border:1px solid #ddc9bc;border-radius:10px;font:inherit;background:#fff}.formgrid textarea{min-height:72px}.formgrid .wide{grid-column:1/-1}.btn.primary{background:#5c8c62;color:#fff;border-color:#5c8c62}.btn.rose{background:#9c456d;color:#fff;border-color:#9c456d}.admin-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.small{font-size:12px;color:var(--muted)}.contact{text-align:center;margin-top:30px;padding:25px;border-radius:20px;background:#f3e4dc}.contact h2{margin:0 0 8px}.contact p{color:var(--muted)}footer{text-align:center;padding:18px;color:var(--muted);font-size:12px}.empty{text-align:center;grid-column:1/-1;padding:30px;color:var(--muted)}
+@media(max-width:740px){.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.card img,.placeholder{height:145px}.body{padding:11px}.body h2{font-size:15px}.formgrid{grid-template-columns:1fr}.formgrid .wide{grid-column:auto}}
+</style></head>
+<body>
+<header><div class="kicker">IMPORTED LIFESTYLE BOUTIQUE</div><h1>Melrose Japan &amp; USA</h1><p class="subtitle">เลือกชมสินค้านำเข้าจากญี่ปุ่นและอเมริกา</p><div class="kicker" style="margin-top:8px">JAPAN · USA · SELECTED WITH CARE</div></header>
+<main>
+<p class="intro">เลือกหมวดหมู่หรือค้นหาชื่อสินค้าได้เลยค่ะ<br>ดูรูปสินค้า ราคา และรายละเอียด แล้วกดสอบถามร้านได้ทันที</p>
+<input id="search" class="search" type="search" placeholder="ค้นหาสินค้า เช่น NMN, POLA, กระเป๋า, เสื้อผ้า...">
+<nav id="filters" class="filters"></nav><section id="grid" class="grid"></section>
+<section class="admin">
+<h2>＋ เพิ่มสินค้า / จัดการรายการสินค้า</h2>
+<p>ส่วนนี้เป็นเครื่องมือทดลองในไฟล์นี้ เพิ่มรูป ชื่อ ราคา และรายละเอียดได้ โดยรายการจะถูกเก็บไว้ในเบราว์เซอร์เครื่องนี้เท่านั้น ยังไม่ซิงก์ข้ามเครื่องหรืออัปเดตบนเว็บไซต์สาธารณะอัตโนมัติ</p>
+<form id="productForm" class="formgrid">
+<input id="name" required placeholder="ชื่อสินค้า เช่น NMN 50000">
+<select id="category" required></select>
+<input id="price" placeholder="ราคา เช่น 13,500 บาท">
+<input id="stock" placeholder="สถานะ เช่น พร้อมส่ง / พรีออเดอร์">
+<input id="imageUrl" class="wide" placeholder="ลิงก์รูปสินค้า (ถ้ามี) หรือเลือกรูปจากเครื่องด้านล่าง">
+<input id="imageFile" class="wide" type="file" accept="image/*">
+<textarea id="description" class="wide" placeholder="รายละเอียดสินค้า"></textarea>
+<div class="wide"><button class="btn primary" type="submit">เพิ่มสินค้าในรายการ</button> <button class="btn" id="export" type="button">ส่งออกรายการสินค้า (JSON)</button> <label class="btn" for="importFile">นำเข้ารายการสินค้า</label><input id="importFile" type="file" accept=".json,application/json" hidden></div>
+</form>
+<p class="small">สำหรับใช้งานจริงหลายเครื่องและให้ลูกค้าทุกคนเห็นสินค้าใหม่ทันที จำเป็นต้องนำเว็บไซต์ขึ้นโฮสต์และเชื่อมฐานข้อมูล/ระบบจัดการสินค้าเพิ่มเติม</p>
+</section>
+<section class="contact"><h2>ต้องการรายละเอียดเพิ่มเติมไหมคะ?</h2><p>กดสอบถามสินค้า แล้วคัดลอกข้อความไปส่งทาง Instagram หรือ LINE ได้เลย</p>
+<a class="btn primary" id="lineLink" href="#" onclick="return placeholderLink(event)">LINE สอบถามสินค้า</a>
+<a class="btn rose" id="igLink" href="#" onclick="return placeholderLink(event)">Instagram ของร้าน</a>
+<p class="small">ลิงก์ติดต่อยังเป็นตัวอย่าง กรุณาใส่ลิงก์จริงก่อนเผยแพร่</p></section>
+</main><footer>Melrose Japan &amp; USA · Product Catalog</footer>
+<script>
+const cats=[
+["วิตามินและอาหารเสริม","🌿","NMN วิตามิน คอลลาเจน และผลิตภัณฑ์ดูแลสุขภาพ"],
+["สกินแคร์และเครื่องสำอาง","🧴","POLA, THE GINZA และบิวตี้ไอเทมจากญี่ปุ่น"],
+["เสื้อผ้าแฟชั่น","👚","เสื้อ กางเกง เสื้อโค้ต และแฟชั่นญี่ปุ่น/อเมริกา"],
+["กระเป๋าแบรนด์เนม","👜","กระเป๋าและสินค้าแฟชั่นแบรนด์ต่าง ๆ"],
+["เครื่องประดับและแอคเซสซอรี่","💍","เครื่องประดับและไอเทมเสริมลุค"],
+["ขนมและของกิน","🍪","ขนมญี่ปุ่น อาหาร และของกินนำเข้า"],
+["ของใช้ไลฟ์สไตล์และของขวัญ","🎁","ของใช้ในบ้าน ของฝาก และของขวัญ"],
+["ของเล่นและคาแรกเตอร์","🧸","ตุ๊กตา ของเล่น และสินค้าคาแรกเตอร์"],
+["โปรโมชั่นและสินค้าพิเศษ","🏷️","สินค้าจัดโปร เซ็ตสุดคุ้ม และรายการพิเศษ"],
+["สินค้าเข้าใหม่","✈️","สินค้าที่เข้ามาตามรอบนำเข้า"]
+];
+const key="melroseCatalogProducts_v1";let products=[];
+try{products=JSON.parse(localStorage.getItem(key)||"[]")}catch(e){}
+let active="ทั้งหมด";
+const $=id=>document.getElementById(id);
+function persist(){try{localStorage.setItem(key,JSON.stringify(products))}catch(e){alert("บันทึกรายการไม่สำเร็จ ไฟล์รูปอาจมีขนาดใหญ่เกินไป กรุณาใช้ลิงก์รูปหรือรูปขนาดเล็ก")}}
+function renderFilters(){const f=$("filters");f.innerHTML="";["ทั้งหมด",...cats.map(c=>c[0])].forEach(n=>{let b=document.createElement("button");b.textContent=n==="ทั้งหมด"?"✦ ทั้งหมด":n;b.className=active===n?"active":"";b.onclick=()=>{active=n;renderFilters();renderCards()};f.appendChild(b)})}
+function safe(s){return String(s||"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function renderCards(){let q=$("search").value.trim().toLowerCase();let list=products.filter(p=>(active==="ทั้งหมด"||p.category===active)&&`${p.name} ${p.description} ${p.category} ${p.price}`.toLowerCase().includes(q));let g=$("grid");g.innerHTML="";
+if(!list.length){g.innerHTML=`<div class="empty">${products.length?"ไม่พบสินค้าที่ค้นหา ลองคำอื่นหรือเลือก “ทั้งหมด” ค่ะ":"ยังไม่มีรายการสินค้าจริงค่ะ ใช้ส่วน “เพิ่มสินค้า” ด้านล่างเพื่อเริ่มลงสินค้าได้เลย"}</div>`;return}
+list.forEach(p=>{let c=document.createElement("article");c.className="card";let art=p.image?`<img src="${safe(p.image)}" alt="${safe(p.name)}">`:`<div class="placeholder">${safe(p.icon||"✦")}</div>`;c.innerHTML=`${art}<div class="body"><h2>${safe(p.name)}</h2><p class="desc">${safe(p.description||"สอบถามรายละเอียดเพิ่มเติมได้ค่ะ")}</p><div class="price">${safe(p.price||"สอบถามราคา")}</div><div class="small">${safe(p.stock||"")}</div><div class="actions"><button class="more ask">สอบถามสินค้า</button><button class="more delete">ลบรายการ</button></div></div>`;
+c.querySelector(".ask").onclick=()=>{let msg=`สวัสดีค่ะ สนใจสินค้า ${p.name}${p.price?" ราคา "+p.price:""} ขอสอบถามรายละเอียดและสต็อกล่าสุดค่ะ`;if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(msg).then(()=>alert("คัดลอกข้อความแล้วค่ะ นำไปวางในแชต Instagram หรือ LINE ได้เลย")).catch(()=>prompt("คัดลอกข้อความนี้ไปส่งได้เลยค่ะ",msg))}else prompt("คัดลอกข้อความนี้ไปส่งได้เลยค่ะ",msg)};
+c.querySelector(".delete").onclick=()=>{if(confirm("ต้องการลบสินค้านี้หรือไม่?")){products=products.filter(x=>x.id!==p.id);persist();renderCards()}};g.appendChild(c)})}
+$("category").innerHTML=cats.map(c=>`<option>${safe(c[0])}</option>`).join("");
+$("productForm").addEventListener("submit",async e=>{e.preventDefault();let file=$("imageFile").files[0],image=$("imageUrl").value.trim();
+if(file){if(file.size>450000){alert("รูปนี้มีขนาดใหญ่เกินไปสำหรับการเก็บในเบราว์เซอร์ กรุณาย่อรูปก่อนหรือใช้ลิงก์รูป");return}image=await new Promise((resolve,reject)=>{let r=new FileReader();r.onload=()=>resolve(r.result);r.onerror=reject;r.readAsDataURL(file)})}
+let cat=$("category").value;products.unshift({id:Date.now().toString(),name:$("name").value.trim(),category:cat,price:$("price").value.trim(),stock:$("stock").value.trim(),description:$("description").value.trim(),image,icon:cats.find(c=>c[0]===cat)?.[1]||"✦"});persist();active="ทั้งหมด";renderFilters();renderCards();e.target.reset();alert("เพิ่มสินค้าแล้วค่ะ")});
+$("search").addEventListener("input",renderCards);
+$("export").onclick=()=>{let blob=new Blob([JSON.stringify(products,null,2)],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="melrose-products.json";a.click();URL.revokeObjectURL(a.href)};
+$("importFile").onchange=async e=>{let f=e.target.files[0];if(!f)return;try{let incoming=JSON.parse(await f.text());if(!Array.isArray(incoming))throw Error();products=incoming;persist();renderCards();alert("นำเข้ารายการแล้วค่ะ")}catch(err){alert("ไฟล์ไม่ถูกต้อง กรุณาเลือกไฟล์ JSON ที่ส่งออกจากหน้านี้")}e.target.value=""};
+function placeholderLink(e){e.preventDefault();alert("กรุณาใส่ลิงก์ LINE และ Instagram จริงของร้านก่อนเผยแพร่เว็บไซต์ค่ะ");return false}
+renderFilters();renderCards();
+</script></body></html>
