@@ -1,0 +1,157 @@
+```html
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Melrose Japan & USA | Premium Collection</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#faf8f4;color:#332d27}
+header{text-align:center;padding:38px 18px 28px;background:#fff}
+.logo{font-size:27px;letter-spacing:2px;font-weight:bold}
+.subtitle{font-size:12px;letter-spacing:3px;color:#9b8062;margin-top:10px}
+header p{font-size:14px;color:#756b61;margin-top:20px}
+.hero{background:#eee5d8;text-align:center;padding:38px 20px}
+.hero h1{font-size:27px;font-weight:500;line-height:1.5;margin:0}
+.hero p{font-size:14px;line-height:1.8;color:#65584b}
+main{max-width:1100px;margin:auto;padding:25px 16px}
+.search{width:100%;padding:15px;border:1px solid #ded5ca;border-radius:6px;font-size:16px;background:white}
+.categories{display:flex;gap:8px;overflow-x:auto;padding:18px 0}
+.categories button{white-space:nowrap;border:1px solid #d8cbb9;background:#fff;padding:10px 15px;border-radius:25px;color:#574738}
+.categories button.active,.categories button:hover{background:#66513e;color:white}
+.section-title{text-align:center;font-size:23px;font-weight:500;margin:25px 0 8px}
+.note{text-align:center;font-size:12px;color:#8b8177;margin-bottom:22px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.card{background:#fff;border:1px solid #eee7df;border-radius:8px;overflow:hidden}
+.photo{height:145px;background:#f0ebe4;display:flex;align-items:center;justify-content:center;font-size:48px}
+.info{padding:13px}
+.tag{font-size:10px;color:#9a7b56;letter-spacing:1px}
+.name{font-size:15px;margin:8px 0;line-height:1.5}
+.price{font-size:14px;color:#806342;margin:10px 0}
+.btn{display:block;text-align:center;background:#65503d;color:white;text-decoration:none;padding:11px 5px;border-radius:4px;font-size:13px}
+.empty{display:none;text-align:center;padding:35px;color:#82776b}
+.about{background:#fff;margin-top:35px;padding:28px 20px;text-align:center;line-height:1.9}
+.about h2{font-weight:500}
+.contact{display:block;text-align:center;margin:25px 0;background:#6a8061;color:white;padding:16px;text-decoration:none;border-radius:5px}
+footer{text-align:center;padding:25px 12px;font-size:11px;color:#8c8176;letter-spacing:1px}
+@media(min-width:650px){
+.grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+.photo{height:210px}
+.logo{font-size:34px}
+.hero{padding:55px 20px}
+}
+@media(min-width:950px){
+.grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">MELROSE</div>
+  <div class="subtitle">JAPAN & USA</div>
+  <p>Premium Imported Lifestyle Collection</p>
+</header>
+
+<section class="hero">
+  <h1>Discover Your Favorite Collection</h1>
+  <p>คัดสรรสินค้าจากญี่ปุ่นและอเมริกา<br>
+  เติมเต็มทุกไลฟ์สไตล์ด้วยสินค้าคุณภาพ</p>
+</section>
+
+<main>
+  <input class="search" id="search" type="search"
+  placeholder="ค้นหาสินค้าที่คุณสนใจ..." aria-label="ค้นหาสินค้า">
+
+  <div class="categories" id="categories">
+    <button class="active" data-category="all">ทั้งหมด</button>
+    <button data-category="food">อาหารและขนม</button>
+    <button data-category="beauty">ความงาม</button>
+    <button data-category="health">สุขภาพ</button>
+    <button data-category="fashion">เสื้อผ้า</button>
+    <button data-category="bag">กระเป๋าและแฟชั่น</button>
+    <button data-category="gift">ของฝากและของขวัญ</button>
+  </div>
+
+  <h2 class="section-title">Our Collection</h2>
+  <p class="note">MELROSE JAPAN & USA · SELECTED WITH CARE</p>
+
+  <div class="grid" id="products"></div>
+  <div class="empty" id="empty">ไม่พบสินค้าที่ค้นหา ลองค้นหาด้วยคำอื่นนะคะ</div>
+
+  <section class="about">
+    <h2>About Melrose</h2>
+    <p>
+      Melrose Japan & USA<br>
+      คัดสรรสินค้าไลฟ์สไตล์จากญี่ปุ่นและอเมริกา<br>
+      ทั้งแฟชั่น ความงาม สุขภาพ อาหาร และของขวัญ<br>
+      สอบถามรายละเอียดสินค้าและราคาได้โดยตรง
+    </p>
+  </section>
+
+  <a class="contact" id="lineButton"
+  href="https://line.me/" target="_blank" rel="noopener">
+    ติดต่อสอบถามสินค้า ผ่าน LINE
+  </a>
+</main>
+
+<footer>
+  MELROSE JAPAN & USA<br>
+  PREMIUM IMPORTED GOODS
+</footer>
+
+<script>
+const products = [
+  {name:"สินค้าอาหารและขนมจากญี่ปุ่น",category:"food",icon:"🍡"},
+  {name:"เครื่องสำอางและสกินแคร์",category:"beauty",icon:"🧴"},
+  {name:"ผลิตภัณฑ์เพื่อสุขภาพ",category:"health",icon:"🌿"},
+  {name:"เสื้อผ้าแฟชั่นนำเข้า",category:"fashion",icon:"👗"},
+  {name:"กระเป๋าและแอคเซสซอรี",category:"bag",icon:"👜"},
+  {name:"ของฝากและของขวัญ",category:"gift",icon:"🎁"}
+];
+
+let selectedCategory = "all";
+
+function showProducts(){
+  const keyword = document.getElementById("search").value.toLowerCase().trim();
+  const filtered = products.filter(p =>
+    (selectedCategory === "all" || p.category === selectedCategory) &&
+    p.name.toLowerCase().includes(keyword)
+  );
+
+  document.getElementById("products").innerHTML = filtered.map(p => `
+    <article class="card">
+      <div class="photo">${p.icon}</div>
+      <div class="info">
+        <div class="tag">MELROSE COLLECTION</div>
+        <div class="name">${p.name}</div>
+        <div class="price">สอบถามราคา</div>
+        <a class="btn" href="https://line.me/" target="_blank"
+        rel="noopener">สอบถามสินค้า</a>
+      </div>
+    </article>
+  `).join("");
+
+  document.getElementById("empty").style.display =
+    filtered.length ? "none" : "block";
+}
+
+document.getElementById("search").addEventListener("input",showProducts);
+
+document.querySelectorAll("#categories button").forEach(button => {
+  button.addEventListener("click",()=>{
+    selectedCategory = button.dataset.category;
+    document.querySelectorAll("#categories button").forEach(b =>
+      b.classList.remove("active")
+    );
+    button.classList.add("active");
+    showProducts();
+  });
+});
+
+showProducts();
+</script>
+</body>
+</html>
+```
